@@ -66,10 +66,7 @@
 
             <div class="map-container">
               <div id="mapid"></div>
-              <span 
-                data-lat="{{orphanage.lat}}"
-                data-lng="{{orphanage.lng}}"
-              ></span>
+              <span data-lat="{{orphanage.lat}}" data-lng="{{orphanage.lng}}"></span>
 
               <footer>
                 <a target="_blank" href="https://maps.google.com/mobile?q={{orphanage.lat}},{{orphanage.lng}}&z=13">Ver rotas no Google Maps</a>
@@ -89,20 +86,29 @@
                 <img src="/images/clock.svg" alt="Horário" />
                 {{orphanage.opening_hours}}
               </div>
-              <div class="open-on-weekends">
-                {{#if orphanage.open_on_weekends}}
-                <img src="/images/info.svg" alt="informações" />
-                Atendemos fim de semana
-                {{/if}}
-              </div>
+
+              {{#if orphanage.open_on_weekends}}
+                <div class="open-on-weekends open">
+                  <img src="/images/info.svg" alt="informações" />
+                  Atendemos fim de semana
+                </div>
+              {{else}}
+                <div class="open-on-weekends closed">
+                <img src="/images/info-red.svg" alt="informações" />
+                Não atendemos fim de semana
+                </div>
+              {{/if}}
+              
             </div>
-            <button class="primary-button" type="button">
+            <a href="https://api.whatsapp.com/send?l=pt_BR&phone={{orphanage.whatsapp}}&text=oi, quero informações sobre visitas para {{orphanage.name}}"
+            target="_blank" 
+            class="primary-button" type="button">
               <img
                 src="/images/whatsapp.svg"
                 alt="Chamar no whattsapp"
               />
               Entrar em contato
-            </button>
+            </a>
           </div>
         </div>
       </main>

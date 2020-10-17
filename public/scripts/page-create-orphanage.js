@@ -89,6 +89,19 @@ function toggleSelect(){
     
 }
 
+function validate(event){
+
+    //validar se lat e lng tem conteudo
+    const needsLatAdnLng = document.querySelector('[name="lat"]');
+
+    if (needsLatAdnLng.value == "") {
+        event.preventDefault()
+        alert('Selecione um ponto no mapa')  
+    }
+    
+    
+}
+
 
 
 
