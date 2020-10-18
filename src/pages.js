@@ -1,5 +1,6 @@
 const Database = require('./database/db')
 const saveOrphanage = require('./database/saveOrphanage')
+const removeOrphanage = require('./database/removeOrphanage')
 
 module.exports = {
 
@@ -82,7 +83,24 @@ module.exports = {
             console.log(error)
             return res.send('Erro no banco de dados!')
         }
+    },
 
+     async removeOrphanage(req, res){
+        const id = req.query.id
+       
+        try {
+            const db = await Database;
+            const results = await db.all(`SELECT * FROM orphanages WHERE id = "${id}"`)
+            const orphanage = results[0]
 
+            await removeOrphanage(db,{orphanage})
+
+            //redirecionando
+            return res.redirect('/orphanages')
+            
+        } catch (error) {
+            console.log(error)
+            return res.send('Erro no banco de dados!')
+        }
     }
 }
